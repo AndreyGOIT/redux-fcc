@@ -8,3 +8,7 @@ const reducer = (state = 5) => {
 const store = Redux.createStore(reducer);
 
 const currentState = store.getState();
+
+const action = {
+  type: "LOGIN",
+};
