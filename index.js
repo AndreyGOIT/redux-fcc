@@ -16,3 +16,4 @@ const action = {
 function actionCreator() {
   return action;
 }
+store.dispatch(actionCreator());
