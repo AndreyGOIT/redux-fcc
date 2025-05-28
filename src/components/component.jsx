@@ -1,11 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
+import { addMessage } from "../redux/store.js";
 
-class DisplayMessages extends React.Component {
+class Presentational extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       input: "",
-      messages: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -19,10 +20,8 @@ class DisplayMessages extends React.Component {
     });
   }
   submitMessage() {
-    this.setState((prevState) => ({
-      input: "",
-      messages: [...prevState.messages, prevState.input],
-    }));
+    this.props.submitNewMessage(this.state.input);
+    this.setState({ input: "" });
   }
 
   render() {
@@ -43,4 +42,18 @@ class DisplayMessages extends React.Component {
   }
 }
 
-export default DisplayMessages;
+const mapStateToProps = (state) => {
+  return { messages: state };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    submitNewMessage: (message) => {
+      dispatch(addMessage(message));
+    },
+  };
+};
+
+const Container = connect(mapStateToProps, mapDispatchToProps)(Presentational);
+
+export default Container;

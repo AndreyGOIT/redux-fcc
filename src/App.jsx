@@ -1,13 +1,10 @@
-// import { useState } from 'react'
 import "./App.css";
-import DisplayMessages from "./components/component";
+import Container from "./components/component";
 
 function App() {
-  // const [count, setCount] = useState(0)
-
   return (
     <div className="App">
-      <DisplayMessages />
+      <Container />
     </div>
   );
 }
