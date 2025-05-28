@@ -1,27 +1,20 @@
-const ADD_TO_DO = "ADD_TO_DO";
-
-// A list of strings representing tasks to do:
-const todos = [
-  "Go to the store",
-  "Clean the house",
-  "Cook dinner",
-  "Learn to code",
-];
-
-const immutableReducer = (state = todos, action) => {
+const immutableReducer = (state = [0, 1, 2, 3, 4, 5], action) => {
   switch (action.type) {
-    case ADD_TO_DO:
+    case "REMOVE_ITEM":
       // Don't mutate state here or the tests will fail
-      return [...state, action.todo];
+      return [
+        ...state.slice(0, action.index),
+        ...state.slice(action.index + 1),
+      ];
     default:
       return state;
   }
 };
 
-const addToDo = (todo) => {
+const removeItem = (index) => {
   return {
-    type: ADD_TO_DO,
-    todo,
+    type: "REMOVE_ITEM",
+    index,
   };
 };
 
